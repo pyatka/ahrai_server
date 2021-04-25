@@ -20,6 +20,15 @@
                 page {
                     margin: 0;
                 }
+
+                .container{
+                    width: 21cm;
+                    padding: 0;
+                    margin: 0;
+                }
+                #positions{
+                    min-width: 16cm;
+                }
             }
         </style>
     </head>
@@ -27,7 +36,7 @@
         <page>
             <div class="container">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-2">
                         <div class="row" style="transform-origin: left top;direction: rtl;transform: rotate(90deg) translate(0, -100%);width: 27.7cm;text-align: center;">
                             <div style="display: block; width: 1.97cm;float:left;">
                                 {{ today_str }}
@@ -55,12 +64,12 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-10">
                         <div class="row text-center">
                             <H3>{{ today_full_str }}</H3>
                         </div>
                         <div class="row">
-                            <div class="col" style="column-count: 2; column-gap: 1.5cm;">
+                            <div class="col" id="positions" style="column-count: 2; column-gap: 1.5cm;">
                             {% for pgroup in today.position_groups %}
                                 {% if pgroup.id != 3 %}
                                         <div class="row" style="break-inside: avoid-column; padding-bottom: 0.5cm;">
