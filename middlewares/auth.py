@@ -26,7 +26,7 @@ def authorization_middleware(next, root, info, **args):
         if auth_token is not None:
             args["user"] = auth_by_token(auth_token[7:])
         else:
-           args["user"] = None 
+            args["user"] = None 
 
     if is_ignored(info.path):
         return next(root, info, **args)

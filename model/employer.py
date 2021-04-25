@@ -52,6 +52,7 @@ def auth_employer(email, password):
                     WHERE email = %s 
                         AND password = %s
                     LIMIT 1""", (email, hashlib.sha256(password.encode()).hexdigest(),))
+
     if e != []:
         return EmployerModel(e["id"])
     return None
