@@ -71,7 +71,7 @@
                         <div class="row">
                             <div class="col" id="positions" style="column-count: 2; column-gap: 1.5cm;">
                             {% for pgroup in today.position_groups %}
-                                {% if pgroup.id != 3 && pgroup.to_show %}
+                                {% if pgroup.id != 3 and pgroup.to_show %}
                                         <div class="row" style="break-inside: avoid-column; padding-bottom: 0.5cm;">
                                             <div class="col">
                                                 <div class="row"><H5 class="w-100" style="text-align: right;text-decoration: underline;">{{ pgroup.name }}</H5></div>
