@@ -39,9 +39,9 @@
                     <div class="col-2">
                         <div class="row" style="transform-origin: left top;direction: rtl;transform: rotate(90deg) translate(0, -100%);width: 27.7cm;text-align: center;">
                             <div style="display: block; width: 1.97cm;float:left;">
-                                {{ today_str }}
+                                {{ yesterday_str }}
                             </div>
-                            {% for ph in today_duty %}
+                            {% for ph in yesterday_duty %}
                                 <div style="display: block; width: 1.97cm;float:left;">
                                     {% if ph.name == None %}
                                     -
@@ -51,9 +51,9 @@
                                 </div>
                             {% endfor %}
                             <div style="display: block; width: 1.97cm;float:left;">
-                                {{ yesterday_str }}
+                                {{ today_str }}
                             </div>
-                            {% for ph in yesterday_duty %}
+                            {% for ph in today_duty %}
                                 <div style="display: block; width: 1.97cm;float:left;">
                                     {% if ph.name == None %}
                                     -
