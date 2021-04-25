@@ -156,6 +156,7 @@ class DayModel(object):
             pgroup_data = dict(pgroup.get_position_group_data())
             pgroup_data["positions"] = []
             pgroup_data["positions_cnt"]  = 0
+            pgroup_data["to_show"] = 0
             for p in positions:
                 pdata = dict(p.get_position_data())
                 if pdata["position_group_id"] == pgroup_data["id"]:
@@ -166,6 +167,8 @@ class DayModel(object):
                     pgroup_data["positions"].append(pdata)
                     pgroup_data["positions_cnt"] += 1
                     day_data["positions_cnt"] += 1
+                    if pdata["default_show"]:
+                        pgroup_data["to_show"] += 1
             day_data["position_groups"].append(pgroup_data)
 
         return day_data
