@@ -6,6 +6,7 @@ from model import get_employers, get_position_groups_models, get_positions_model
 from middlewares import auth
 
 from db import get_pg
+import sys
 
 class Query(graphene.ObjectType):
     is_authorized = graphene.Boolean()
@@ -34,6 +35,7 @@ class Query(graphene.ObjectType):
         return [Position(e) for e in get_positions_models()]
 
     def resolve_is_authorized(self, info, **args):
+        sys.stderr.write(args["user"])
         if args["user"] is not None:
             return True
         else:
