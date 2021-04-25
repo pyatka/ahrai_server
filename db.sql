@@ -138,7 +138,7 @@ CREATE TABLE employer_group_to_permission (
 ALTER TABLE ONLY employer_group_to_permission ADD CONSTRAINT employer_group_to_permission_pkey PRIMARY KEY (employer_group_id, permission_id);
 
 ALTER TABLE employer ADD COLUMN email character varying(50);
-ALTER TABLE employer ADD COLUMN password character varying(32);
+ALTER TABLE employer ADD COLUMN password character varying(64);
 
 CREATE TABLE token (
     id integer NOT NULL,
