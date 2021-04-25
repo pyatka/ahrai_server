@@ -15,5 +15,5 @@ PAIRED = {
     '27': 34,
 }
 
-with open("db.json", "r") as f:
+with open(os.path.join(APP_DIR, "db.json"), "r") as f:
     DB = json.loads(f.read())
