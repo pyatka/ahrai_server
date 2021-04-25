@@ -35,7 +35,7 @@ class Query(graphene.ObjectType):
         return [Position(e) for e in get_positions_models()]
 
     def resolve_is_authorized(self, info, **args):
-        sys.stderr.write(args["user"])
+        sys.stderr.write(str(args["user"]))
         if args["user"] is not None:
             return True
         else:
