@@ -43,10 +43,10 @@
                             </div>
                             {% for ph in yesterday_duty %}
                                 <div style="display: block; width: 1.97cm;float:left;">
-                                    {% if ph.name == None %}
+                                    {% if ph.surname == None %}
                                     -
                                     {% else %}
-                                        {{  ph.name }}
+                                        {{  ph.surname }}
                                     {% endif %}
                                 </div>
                             {% endfor %}
@@ -55,10 +55,10 @@
                             </div>
                             {% for ph in today_duty %}
                                 <div style="display: block; width: 1.97cm;float:left;">
-                                    {% if ph.name == None %}
+                                    {% if ph.surname == None %}
                                     -
                                     {% else %}
-                                        {{  ph.name }}
+                                        {{  ph.surname }}
                                     {% endif %}
                                 </div>
                             {% endfor %}
@@ -87,7 +87,7 @@
                                                                         {% else %}
                                                                             {% for e in p.employers %}
                                                                                 <span class="h6" style="margin-left: 0.2cm;">
-                                                                                    ד"ר&nbsp;{{ e.name }}{% if not loop.last %},&nbsp;{% endif %}
+                                                                                    ד"ר&nbsp;{{ e.surname }}{% if not loop.last %},&nbsp;{% endif %}
                                                                                 </span>
                                                                             {% endfor %}
                                                                         {% endif %}

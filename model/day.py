@@ -136,7 +136,7 @@ class DayModel(object):
                             (self.day_id, employer_id,), auto_one=False)]
 
     def get_duty_data(self):
-        duty_data = self.pg.select("""SELECT p.id, p.name as pname, e.name FROM position p
+        duty_data = self.pg.select("""SELECT p.id, p.name as pname, e.surname FROM position p
                                     LEFT JOIN position_group pg ON pg.id = p.position_group_id
                                     LEFT JOIN day_position_to_employer dpte ON dpte.day_id = %s
                                                                                 AND dpte.position_id = p.id
