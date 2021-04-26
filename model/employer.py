@@ -44,6 +44,7 @@ def get_employers():
     pg = get_pg()
     return [EmployerModel(e["id"]) for e in pg.select("""
                                 SELECT id FROM employer
+                                WHERE title_id != 3
                         """, auto_one=False)]
 
 def auth_employer(email, password):

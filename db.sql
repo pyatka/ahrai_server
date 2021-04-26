@@ -161,3 +161,22 @@ CREATE INDEX token_token_idx ON token (token);
 CREATE INDEX token_employer_id_idx ON token (employer_id);
 
 ALTER TABLE employer ADD COLUMN group_id integer DEFAULT 2;
+
+CREATE TABLE title (
+    id integer NOT NULL,
+    name character varying(20)
+);
+
+CREATE SEQUENCE title_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE ONLY title ALTER COLUMN id SET DEFAULT nextval('title_id_seq'::regclass);
+ALTER TABLE ONLY title ADD CONSTRAINT title_pkey PRIMARY KEY (id);
+
+INSERT INTO title (name) VALUES ('מתמחה'), ('מרדים בכיר'), ('מזכירות');
+
+ALTER TABLE employer ADD COLUMN title_id integer DEFAULT 1;
