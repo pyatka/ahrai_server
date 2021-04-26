@@ -5,6 +5,7 @@ processors = {
     "ADD": [
         "add_duty_with_holiday",
         "add_same_cover_position",
+        "add_full_day_position",
     ],
     "DELETE": [
         "delete_duty_holiday",
@@ -37,6 +38,24 @@ def add_duty_with_holiday(day, position_id, employer_id, view_order, **kwargs):
             "type": "info",
             "message": "%s added to %s tomorrow (%s)" % (str(em), str(pm), str(tomorrow))
         })
+    return result
+
+def add_full_day_position(day, position_id, employer_id, view_order, **kwargs):
+    result = []
+
+    pm = PositionModel(position_id)
+    cpdata = pm.get_position_data()
+    if cpdata["capacity"] == 3:
+        positions = day.get_employer_positions(employer_id)
+        if len(positions) > 0:
+            em = EmployerModel(employer_id)
+            for p in positions:
+                result.extend(day.force_delete_position_employer(p.id, employer_id))
+                result.append({
+                    "type": "danger",
+                    "message": "%s deleted from %s today (%s)" % (str(em), str(p), str(day))
+                })
+
     return result
 
 def add_same_cover_position(day, position_id, employer_id, view_order, **kwargs):
