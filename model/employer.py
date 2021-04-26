@@ -48,14 +48,15 @@ def get_employers():
                         """, auto_one=False)]
 
 def auth_employer(email, password):
-    pg = get_pg()
-    e = pg.select("""SELECT id FROM employer 
-                    WHERE email = %s 
-                        AND password = %s
-                    LIMIT 1""", (email.lower(), hashlib.sha256(password.encode()).hexdigest(),))
+    if len(email) > 3 and len(password) > 2: 
+        pg = get_pg()
+        e = pg.select("""SELECT id FROM employer 
+                        WHERE email = %s 
+                            AND password = %s
+                        LIMIT 1""", (email.lower(), hashlib.sha256(password.encode()).hexdigest(),))
 
-    if e != []:
-        return EmployerModel(e["id"])
+        if e != []:
+            return EmployerModel(e["id"])
     return None
 
 def auth_by_token(token):
