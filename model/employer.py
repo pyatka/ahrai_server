@@ -52,7 +52,7 @@ def auth_employer(email, password):
     e = pg.select("""SELECT id FROM employer 
                     WHERE email = %s 
                         AND password = %s
-                    LIMIT 1""", (email, hashlib.sha256(password.encode()).hexdigest(),))
+                    LIMIT 1""", (email.lower(), hashlib.sha256(password.encode()).hexdigest(),))
 
     if e != []:
         return EmployerModel(e["id"])
