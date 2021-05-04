@@ -48,13 +48,21 @@ def add_full_day_position(day, position_id, employer_id, view_order, **kwargs):
     if cpdata["capacity"] == 3:
         positions = day.get_employer_positions(employer_id)
         if len(positions) > 0:
-            em = EmployerModel(employer_id)
+            to_disable = False
             for p in positions:
-                result.extend(day.force_delete_position_employer(p.id, employer_id))
-                result.append({
-                    "type": "danger",
-                    "message": "%s deleted from %s today (%s)" % (str(em), str(p), str(day))
-                })
+                data = p.get_position_data()
+                if(data["capacity"] != 2):
+                    to_disable = True
+                    break
+            
+            if to_disable:
+                em = EmployerModel(employer_id)
+                for p in positions:
+                    result.extend(day.force_delete_position_employer(p.id, employer_id))
+                    result.append({
+                        "type": "danger",
+                        "message": "%s deleted from %s today (%s)" % (str(em), str(p), str(day))
+                    })
 
     return result
 
